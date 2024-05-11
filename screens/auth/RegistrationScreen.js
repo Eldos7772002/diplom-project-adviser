@@ -123,7 +123,7 @@ export default function RegistrationScreen({ navigation }) {
           preserveAspectRatio='xMidYWid slice'
           source={require("../../assets/images/signUp.jpg")}
         >
-        <View style={styles.innerBox} height={height / 1.55}>
+        <View style={styles.innerBox} height={height / 1.80}>
             {profileImage ?
               <Image
                 source={{ uri: profileImage }}
@@ -213,14 +213,13 @@ const styles = StyleSheet.create({
   image: {
     flex: 1,
     resizeMode: "cover",
-    justifyContent: "flex-end",
+    justifyContent: "center",
   },
   innerBox: {
     position: "relative",
     alignItems: 'center',
     backgroundColor: "#fff",
-    borderTopRightRadius: 25,
-    borderTopLeftRadius: 25,
+    borderRadius: 25,
   },
   photoBox: {
     position: "absolute",

@@ -1,4 +1,4 @@
-import { SQLite } from 'expo-sqlite';
+import { SQLite } from 'expo-sqlite/next';
 
 // Открываем или создаем базу данных
 const db = SQLite.openDatabase('test.db');

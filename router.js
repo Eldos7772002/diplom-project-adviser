@@ -79,7 +79,7 @@ export const useRoute = (isAuth) => {
         options={{
           tabBarIcon: ({ focused, size, color }) => (
             <Feather
-              name={focused ? "message-circle" : "message-circle"}
+                name={focused ? "upload" : "upload"} // Используем иконку "file-upload-outline" для загрузки файла
               size={size}
               color={color}
               style={{ alignSelf: 'center', marginTop: 10 }}
@@ -93,16 +93,15 @@ export const useRoute = (isAuth) => {
         component={CreatePostsScreen}
         options={({ navigation, route }) => ({
           tabBarIcon: ({ focused, size, color }) => (
-            <View style={{ width: 70, height: 40, borderRadius: 20, backgroundColor: "#0D6ABF", alignItems: 'center', justifyContent: 'center', marginTop: 9 }}>
-              <AntDesign name="plus" size={16} color="#FFFFFF" />
-            </View>
+              <Ionicons
+                  name={focused ? "add" : "add-outline"}
+                  size={28}
+                  color={color}
+                  style={{ alignSelf: 'center', marginTop: 10 }}
+              />
           ),
-          tabBarStyle: { display: 'none' },
-          headerLeft: () => (
-            <TouchableOpacity style={{ marginLeft: 16 }}>
-              <AntDesign name="arrowleft" size={24} color="#212121" />
-            </TouchableOpacity>
-          ),
+            headerShown: false,
+
         })}
       />
       <MainTab.Screen
@@ -120,21 +119,21 @@ export const useRoute = (isAuth) => {
           headerShown: false,
         }}
       />
-      <MainTab.Screen
-        name='Profile'
-        component={ProfileScreen}
-        options={{
-          tabBarIcon: ({ focused, size, color }) => (
-            <Feather
-              name={focused ? "user" : "user"}
-              size={size}
-              color={color}
-              style={{ alignSelf: 'center', marginTop: 10 }}
-            />
-          ),
-          headerShown: false,
-        }}
-      />
+      {/*<MainTab.Screen*/}
+      {/*  name='Profile'*/}
+      {/*  component={ProfileScreen}*/}
+      {/*  options={{*/}
+      {/*    tabBarIcon: ({ focused, size, color }) => (*/}
+      {/*      <Feather*/}
+      {/*        name={focused ? "user" : "user"}*/}
+      {/*        size={size}*/}
+      {/*        color={color}*/}
+      {/*        style={{ alignSelf: 'center', marginTop: 10 }}*/}
+      {/*      />*/}
+      {/*    ),*/}
+      {/*    headerShown: false,*/}
+      {/*  }}*/}
+      {/*/>*/}
     </MainTab.Navigator>
   )
 }

@@ -1,6 +1,6 @@
 import { articles_url, _api_key,category,country_code} from '../config/rest_config';
 
-export async function getArticles(category='sport') {
+export async function getArticles(category='technology') {
 
     try {
         let articles = await fetch(`${articles_url}?country=${country_code}&category=${category}`, {

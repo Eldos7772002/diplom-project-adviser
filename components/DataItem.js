@@ -11,7 +11,6 @@ const DataItem = ({ data, onPress }) => {
 
   return (
     <TouchableOpacity style={styles.container} onPress={handlePress}>
-      <Image source={{ uri: urlToImage || 'https://via.placeholder.com/150' }} style={styles.image} />
       <View style={styles.content}>
         <Text numberOfLines={2} style={styles.title}>{title}</Text>
         <Text numberOfLines={2} style={styles.description}>{description}</Text>

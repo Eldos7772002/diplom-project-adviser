@@ -28,6 +28,7 @@ export default function LoginScreen({ navigation }) {
     // Добавлено: запуск анимации появления после загрузки компонента
     setIsVisible(true);
   }, []);
+
   const dispatch = useDispatch();
 
   // Функции для управления фокусом полей ввода
@@ -46,7 +47,7 @@ export default function LoginScreen({ navigation }) {
   // Обработчик отправки формы входа
   const handleSubmit = () => {
     dispatch(authSignInUser(state));
-    setState(initialState); // Очистка состояния формы после отправки
+    setState(initialState);
   };
 
   return (
@@ -65,8 +66,8 @@ export default function LoginScreen({ navigation }) {
               preserveAspectRatio='xMidYWid slice'
               source={require("../../assets/images/signUp.jpg")}
           >
-            <View style={styles.innerBox} height={height / 1.7}>
-              <Text style={styles.titleText}>Логин</Text>
+            <View style={styles.innerBox} height={height / 2.7}>
+              <Text style={styles.titleText}>Войти</Text>
               <Animated.View style={[styles.form, { opacity: isVisible ? 1 : 0, transform: [{ translateY: isVisible ? 0 : 50 }] }]}>
                 <TextInput
                     style={isFocused.email ? [styles.input, styles.inputFocused] : styles.input}
@@ -124,15 +125,15 @@ const styles = StyleSheet.create({
   image: {
     flex: 1,
     resizeMode: "cover",
-    justifyContent: "flex-end",
+    justifyContent: "center",
   },
   innerBox: {
     position: "relative",
     alignItems: 'center',
     backgroundColor: "#FFFFFF",
-    borderTopRightRadius: 25,
-    borderTopLeftRadius: 25,
-    paddingVertical: 20, // Увеличиваем вертикальный отступ внутреннего контейнера
+    borderRadius: 25,
+    height:'100%'
+    // paddingVertical: 20, // Увеличиваем вертикальный отступ внутреннего контейнера
   },
   titleText: {
     marginTop: 20, // Уменьшаем отступ сверху до заголовка

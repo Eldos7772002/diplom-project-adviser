@@ -48,11 +48,10 @@ const NewsScreen = () => {
       ))}
     </ScrollView>
   );
-
   return (
     
     <View style={styles.container}>
-      <Text style={styles.title}>НОВОСТИ ПРО СПОРТ</Text>
+      <Text style={styles.title}>НОВОСТИ </Text>
       {view}
       <Modal 
         showModal={modalVisible}
