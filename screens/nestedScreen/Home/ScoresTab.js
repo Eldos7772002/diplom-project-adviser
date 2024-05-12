@@ -58,32 +58,28 @@ const ScoresTab = () => {
         }
     ];
 
-    const getAllCourses = async () => {
-        try {
-            const courses = await new Promise((resolve, reject) => {
-                db.transaction(tx => {
-                    tx.executeSql(
-                        'SELECT DISTINCT course FROM Students',
-                        [],
-                        (_, result) => {
-                            const { rows } = result;
-                            const courses = [];
-                            for (let i = 1; i < rows.length; i++) {
-                                courses.push(rows.item(i).course);
-                            }
-                            resolve(courses);
-                        },
-                        (_, error) => {
-                            reject(error);
+    const getAllCourses = () => {
+        return new Promise((resolve, reject) => {
+            db.transaction(tx => {
+                tx.executeSql(
+                    'SELECT DISTINCT course FROM Students',
+                    [],
+                    (_, result) => {
+                        const { rows } = result;
+                        const courses = [];
+                        for (let i = 1; i < rows.length; i++) {
+                            courses.push(rows.item(i).course);
                         }
-                    );
-                });
+                        resolve(courses);
+                    },
+                    (_, error) => {
+                        reject(error);
+                    }
+                );
             });
-            setCoursesList(courses);
-        } catch (error) {
-            console.error('Ошибка при получении списка курсов:', error);
-        }
+        });
     };
+
 
     const getAllSpecialtys = () => {
         return new Promise((resolve, reject) => {
@@ -179,7 +175,7 @@ const ScoresTab = () => {
     };
     const validAssessmentFields = ['total_score', 'annual_gpa', 'cumulative_gpa', 'semester_gpa']; // Допустимые поля
 
-    const getFilteredStudents = (params) => {
+    const getFilteredStudents = (selectedAssessment,params) => {
         return new Promise((resolve, reject) => {
             let query = 'SELECT ' +
                 'COUNT(CASE WHEN ' + selectedAssessment + ' = 0 THEN 1 END) AS zeroPoints, ' +
@@ -296,11 +292,11 @@ const ScoresTab = () => {
             disciplineName: selectedDiscipline,
             languageOfStudy: selectedLanguage,
         };
-        if (selectedAssessment && selectedCourse && selectedSpeciality && selectedDiscipline && selectedLanguage) {
 
+        if (selectedAssessment && selectedCourse && selectedSpeciality && selectedDiscipline && selectedLanguage) {
             getFilteredStudents(selectedAssessment, params)
                 .then(res => {
-                    const data = {
+                    const newData = {
                         labels: ['0', '< 15', '15-25', '25 >'],
                         datasets: [
                             {
@@ -313,14 +309,13 @@ const ScoresTab = () => {
                             }
                         ]
                     };
-                    setData(data);
+                    setData(newData);
                 })
                 .catch(error => {
                     console.error('Error fetching data:', error);
                 });
         }
     }, [selectedAssessment, selectedCourse, selectedSpeciality, selectedDiscipline, selectedLanguage]);
-
     return(<>
     <SafeAreaView>
         <View>

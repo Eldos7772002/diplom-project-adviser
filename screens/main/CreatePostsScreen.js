@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import uuid from "react-native-uuid";
 
-import { Camera, CameraType } from "expo-camera";
+import { Camera, CameraType } from "expo-camera/legacy";
 import * as ImagePicker from 'expo-image-picker';
 import * as MediaLibrary from "expo-media-library";
 
@@ -42,15 +42,18 @@ const CreatePostsScreen = ({ navigation }) =>
         title: false,
         place: false,
     });
-
+    const handleCameraClose = () => {
+        setIsOpenCamera(false);
+    }
     const { userId, nickname, userPhoto } = useSelector((state) => state.auth);
     const dispatch = useDispatch();
 
     useEffect(() => {
         (async () => {
-        const mediaLibraryPermission =
-            await MediaLibrary.requestPermissionsAsync();
-        setLibraryPermission(mediaLibraryPermission.status === "granted");
+            const { status } = await Camera.requestCameraPermissionsAsync();
+            if (status !== 'granted') {
+                console.log('Camera permission not granted');
+            }
         })();
     }, []);
 
@@ -169,7 +172,7 @@ const CreatePostsScreen = ({ navigation }) =>
 
     const handleSubmit = async () => {
     if (
-        photo.length !== 0 &&
+        photo !== null &&
         title.length !== 0 &&
         inputLocation.length !== 0
     ) {
@@ -255,9 +258,10 @@ const CreatePostsScreen = ({ navigation }) =>
                         </ImageBackground> : null}
 
                         {isOpenCamera === true && <Camera style={styles.camera} ref={setCamera} type={type}>
-                                <TouchableOpacity onPress={toggleCameraType} style={styles.cameraType} >
+                            <TouchableOpacity onPress={handleCameraClose} style={styles.cameraType}>
                                 <Ionicons name="ios-camera-reverse-outline" size={20} color="#FFFFFF" />
                             </TouchableOpacity>
+
                                 <TouchableOpacity onPress={takePhotoFromLibrary} style={styles.libraryPhoto} >
                                 <MaterialIcons name="photo-library" size={24} color="#FFFFFF" />
                                 </TouchableOpacity>
@@ -411,7 +415,7 @@ const styles = StyleSheet.create({
     },
     inputIcon: {
         position: 'absolute',
-        marginTop: 32, 
+        marginTop: 32,
     },
     btn: {
         marginTop: 38,
