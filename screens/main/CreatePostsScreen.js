@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import { View, Text, StyleSheet, Dimensions, TextInput, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, Button, TouchableOpacity, ImageBackground, Alert } from "react-native";
 import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
+import { Platform } from 'react-native';
 
 import { useDispatch, useSelector } from "react-redux";
 
@@ -259,7 +260,7 @@ const CreatePostsScreen = ({ navigation }) =>
 
                         {isOpenCamera === true && <Camera style={styles.camera} ref={setCamera} type={type}>
                             <TouchableOpacity onPress={handleCameraClose} style={styles.cameraType}>
-                                <Ionicons name="ios-camera-reverse-outline" size={20} color="#FFFFFF" />
+                                <Ionicons name="ios-reverse-camera" size={20} color="#FFFFFF" />
                             </TouchableOpacity>
 
                                 <TouchableOpacity onPress={takePhotoFromLibrary} style={styles.libraryPhoto} >

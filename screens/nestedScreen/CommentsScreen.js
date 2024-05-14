@@ -1,6 +1,8 @@
 import { Ionicons } from "@expo/vector-icons";
 import { useEffect, useState } from "react";
 import uuid from "react-native-uuid";
+import { Platform } from 'react-native';
+
 import {
   View,
   StyleSheet,
@@ -56,7 +58,7 @@ const CommentsScreen = ({ route }) => {
               {/* {comments.postId === posts.} */}
 
   return (
-    
+
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}

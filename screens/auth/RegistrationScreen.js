@@ -8,6 +8,7 @@ import { AntDesign } from '@expo/vector-icons';
 import { storage } from "../../firebase/config";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { authSignUpUser } from "../../redux/auth/authOperations";
+import { Platform } from 'react-native';
 
 // Начальное состояние формы регистрации
 const initialState = {
@@ -230,7 +231,7 @@ const styles = StyleSheet.create({
   },
   photoBoxBtn: {
     position: "absolute",
-    alignContent: 'center', 
+    alignContent: 'center',
     left: 48,
     marginVertical: 15,
     backgroundColor: '#ffffff',
