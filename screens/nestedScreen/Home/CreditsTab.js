@@ -126,10 +126,10 @@
                     conditions.push('course = ?');
                     params.push(course);
                 }
-                // if (iin !== undefined) {
-                //     conditions.push('iin = ?');
-                //     params.push(iin);
-                // }
+                if (iin !== undefined) {
+                    conditions.push('iin = ?');
+                    params.push(iin);
+                }
                 if (payment_form !== undefined) {
                     conditions.push('payment_form = ?');
                     params.push(payment_form);
