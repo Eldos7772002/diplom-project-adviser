@@ -10,6 +10,8 @@ import LoginScreen from './screens/auth/LoginScreen';
 import ProfileScreen from "./screens/main/ProfileScreen";
 import CreatePostsScreen from "./screens/main/CreatePostsScreen";
 import PostsScreen from "./screens/main/PostsScreen";
+import PostsScreen2 from "./screens/main/PostsScreen2";
+
 import MessagesScreen from "./screens/main/MessagesScreen";
 import NewsScreen from "./screens/main/NewsScreen";
 import Chats from "./screens/main/Chats";
@@ -161,7 +163,21 @@ export const MainStack = () => (
                 headerShown: false,
             }}
         />
-
+        <MainTab.Screen
+            name='Posts2'
+            component={PostsScreen2}
+            options={{
+                tabBarIcon: ({ focused, size, color }) => (
+                    <Feather
+                        name={focused ? "message-square" : "message-square"}
+                        size={size}
+                        color={color}
+                        style={{ alignSelf: 'center', marginTop: 10 }}
+                    />
+                ),
+                headerShown: false,
+            }}
+        />
 
         <MainTab.Screen
             name='Profile'
